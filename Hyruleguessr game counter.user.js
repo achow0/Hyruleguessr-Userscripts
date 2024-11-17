@@ -10,6 +10,7 @@
 (function() {
     "use strict";
     const URL = "https://hyruleguessr.com/game";
+    let counted = false;
     let game = 0;
     let gameText = document.createElement("h4");
     gameText.innerText = "Perfect Games: " + game;
@@ -18,15 +19,19 @@
 
     function run() {
         if (!window.location.href.startsWith(URL)) return;
+        console.log("run");
 
         // Select replay button
         const replay_div = document.querySelector(".replay-container");
+        const start_game_div = document.querySelector(".start-game-btn-container");
 
+        if (start_game_div) counted = false
         if (replay_div) {
             let score_div = document.querySelector(".total-container");
-            if (score_div && score_div.innerText.match(/\d+/g)[0] == 25000) { // if perfect, update game number
+            if (!counted && score_div && score_div.innerText.match(/\d+/g)[0] <= 25000) { // if perfect, update game number
                 game++;
-                gameText.innerText = "Perfect Games: " + game
+                gameText.innerText = "Perfect Games: " + game;
+                counted = true
             }
         }
     }
@@ -41,7 +46,4 @@
     });
 
     addEventListener("click", run)
-
-    // Re-run on URL change to handle tab switches or SPA-like navigation
-    if (window.onurlchange === null) window.addEventListener("urlchange", run);
 })();
