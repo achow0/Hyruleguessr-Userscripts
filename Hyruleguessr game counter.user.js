@@ -25,9 +25,9 @@
         const start_game_div = document.querySelector(".start-game-btn-container");
 
         if (start_game_div) counted = false // set "counted" to false if new game
-        if (replay_div) { // if end of game
+        else if (replay_div) { // if end of game
             let score_div = document.querySelector(".total-container");
-            if (!counted && score_div && score_div.innerText.match(/\d+/g)[0] == 25000) { // if perfect, update game number
+            if (!counted && score_div && score_div.innerText.match(/\d+/g)[0] <= 25000) { // if perfect, update game number
                 game++;
                 gameText.innerText = "Perfect Games: " + game;
                 counted = true // set "counted" to true to prevent double counting of games
