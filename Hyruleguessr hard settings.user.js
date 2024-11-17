@@ -13,43 +13,34 @@
     // Change these Key constants to change the letters on your keyboard, always use lowercase.
     const HardKey = "h";
     const NormalKey = "n";
-    addEventListener("keydown", e => {
-
-        function run(info) {
-            if (!info.url.startsWith(URL)) return;
-            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
-            if (e.key === HardKey || e.key === HardKey.toUpperCase()) {
-                console.log("h")
-                if(checkboxes[1].checked){
-                    checkboxes[1].click();
-                }
-                if(!checkboxes[4].checked){
-                    checkboxes[4].click();
-                }
-                var sliders1 = document.querySelectorAll('#formControlRange');
-                changeSliders(sliders1[0], 1);
-                changeSliders(sliders1[1], 0);
-            }else if (e.key === NormalKey || e.key === NormalKey.toUpperCase()){
-                checkboxes = document.querySelectorAll('input[type="checkbox"]');
-                if(!checkboxes[1].checked){
-                    checkboxes[1].click();
-                }
-                if(checkboxes[4].checked){
-                    checkboxes[4].click();
-                }
-                var sliders2 = document.querySelectorAll('#formControlRange');
-                changeSliders(sliders2[0], 0);
+    function run(e) {
+        if (!window.location.href.startsWith(URL)) return;
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        if (e.key === HardKey || e.key === HardKey.toUpperCase()) {
+            for (let i=0 ; i<checkboxes.length; i++){
+                let checkbox = checkboxes[i]
+                if (["displayTowers", "displayTowns", "displayStables"].includes(checkbox.id) && checkbox.checked) checkbox.click();
+                else if (checkbox.id === "pictureLimitDuration" && !checkbox.checked) checkbox.click();
             }
-        }
-
-        function changeSliders(slider, value){
-            if(slider){
-                slider.value = value;
-                slider.dispatchEvent(new Event('input', { bubbles: true }));
+            var sliders1 = document.querySelectorAll('#formControlRange');
+            changeSliders(sliders1[0], 1);
+            changeSliders(sliders1[1], 0);
+        } else if (e.key === NormalKey || e.key === NormalKey.toUpperCase()) {
+            checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            for (let i=0 ; i<checkboxes.length; i++) {
+                let checkbox = checkboxes[i]
+                if (checkbox.id === "displayTowers" && !checkbox.checked) checkbox.click()
+                else if (["displayTowns", "displayStables", "pictureLimitDuration"].includes(checkbox.id) && checkbox.checked) checkbox.click()
             }
+            var sliders2 = document.querySelector('#formControlRange');
+            changeSliders(sliders2, 0);
         }
-
-        if (window.onurlchange === null) window.addEventListener("urlchange", run);
-        run({url: window.location.href});
-    });
+    }
+    function changeSliders(slider, value){
+        if(slider) {
+            slider.value = value;
+            slider.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+    }
+    addEventListener("keydown", run);
 })();
