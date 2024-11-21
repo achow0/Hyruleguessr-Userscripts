@@ -4,7 +4,6 @@
 // @description  Press spacebar to validate guess, replay a game, and start a new game
 // @author       achow
 // @match        https://hyruleguessr.com/*
-// @grant        window.onurlchange
 // ==/UserScript==
 
 (function() {
