@@ -4,7 +4,6 @@
 // @description  Game counter for speedruns.
 // @author       achow
 // @match        https://hyruleguessr.com/*
-// @grant        none
 // ==/UserScript==
 
 (function() {
