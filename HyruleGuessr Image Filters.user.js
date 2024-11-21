@@ -5,7 +5,6 @@
 // @description  Applies one or multiple filters to the images to create more of a challenge.
 // @author       Noci27
 // @match        https://hyruleguessr.com/*
-// @grant        window.onurlchange
 // ==/UserScript==
 
 (function() {
