@@ -4,7 +4,6 @@
 // @description  Press the spacebar to validate a guess; it only works if the map is open and the button is visible. Press the spacebar to press "Next" in between rounds.
 // @author       achow
 // @match        https://hyruleguessr.com/*
-// @grant        window.onurlchange
 // ==/UserScript==
 
 ( function() {
