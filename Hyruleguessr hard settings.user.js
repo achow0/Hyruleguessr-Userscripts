@@ -4,7 +4,6 @@
 // @description  Press the H key to automatically set extremeguessr difficulty settings
 // @author       SebastiÃ¡nTGD
 // @match        https://hyruleguessr.com/*
-// @grant        window.onurlchange
 // ==/UserScript==
 
 (function() {
